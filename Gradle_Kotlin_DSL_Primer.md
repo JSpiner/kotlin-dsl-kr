@@ -15,6 +15,26 @@
 - 그루비와 코틀린 함께 사용하기(상호운용성)
 - 한계
 
-Gradle의 Kotlin DSL은 이전에 사용되오던 Groovy DSL을 대체할 수 있는 여러 구문들을 제공합니다. 
+Gradle의 코틀린 DSL은 이전에 사용되오던 Groovy DSL을 대체할 수 있는 여러 구문들을 제공합니다. 
 이를 통해 여러 IDE들의 내용완성(content assist), 리팩토링, 문서화 등을 제공받을 수 있습니다. 
-이 문서에서는 
+이 문서에서는 코틀린 DSL의 주요 작성법과 Gradle API의 사용법에 대해 다룹니다.
+
+> Note : 이미 만들어놓은 Gradle를 코틀린 DSL로 마이그레이션하는데 관심이 있는경우 [마이그레이션 가이드](.)를 읽어보세요
+
+### 전제조건
+- 내장(embedded) 코틀린 컴파일러는 리눅스, 맥OS, 윈도우, Cygwin, FreeBSD와 x86-64 기반 Solaris 에서 동작합니다.
+- 코틀린 문법과 기본 기능들은 본 문서를 이해하는데 많은 도움이 됩니다. [코틀린 레퍼런스 문서](https://kotlinlang.org/docs/reference/) 나 [Kotlin Tutorial](https://kotlinlang.org/docs/tutorials/koans.html) 문서를 참고하세요.
+- `plugin {}` 블록을 사용하면 여러 IDE 지원을 받을수 있으니 추천드립니다.
+
+### IDE 지원사항
+IntelliJ와 Android Studio는 완전하게 Kotlin DSL을 지원합니다. 다른 IDE들은 아직은 완벽하게 지원하진 않으나, 사용할 수는 있습니다.
+
+|  | Build import | Syntax highlighting | Semantic editor |
+|--------:|:--------:|:--------:|:--------:|
+| IntelliJ IDEA | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| Android Studio | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| Eclipse | :white_check_mark: | :white_check_mark: | :x: |
+| CLion | :white_check_mark: | :white_check_mark: | :x: |
+| Apache Netbeans | :white_check_mark: | :white_check_mark: | :x: |
+| Visual Studio Code(LSP) | :white_check_mark: | :white_check_mark: | :x: |
+| Visual Studio | :white_check_mark: | :x: | :x: |
