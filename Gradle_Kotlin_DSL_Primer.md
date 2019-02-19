@@ -4,7 +4,7 @@
 ### 목차
 - [전제조건](#전제조건)
 - [IDE 지원사항](#IDE-지원사항)
-- 코틀린 DSL 스크립트
+- [코틀린 DSL 스크립트](#코틀린-DSL-스크립트)
 - Type-safe한 모델 접근자
 - Multi-Project에서 빌드하기
 - `plugins {}` 를 사용할수 없을때
@@ -46,3 +46,45 @@ IntelliJ와 Android Studio는 완전하게 Kotlin DSL을 지원합니다. 다른
 
 추가적으로, IntelliJ 와 Android Studio는 편집을 할때 최대 3개의 Gradle 데몬이 동작될 수 있습니다. (빌드, 설정파일, 초기화 스크립트)
 설정이 느리게 되어있다면 IDE 반응성에 영향을 줄 수 있습니다. 그럴경우 [성능향상가이드](https://guides.gradle.org/performance/#configuration) 를  확인해주세요.  
+
+#### 자동 import vs 자동 의존성 추가
+IntelliJ와 그에서 파생된 Android Studio 둘 다 빌드 로직의 변경을 감지해 두가지 옵션을 제공합니다.
+1. 모든 변경사항 다시 불러오기
+![intellij-build-import-popup](https://docs.gradle.org/5.0/userguide/img/intellij-build-import-popup.png)
+2. 스크립트를 변경할 때마다 의존성 불러오기
+![intellij-script-dependencies-reload](https://docs.gradle.org/5.0/userguide/img/intellij-script-dependencies-reload.png)
+
+1번은 비활성화하고 2번은 활성화하는것을 권장합니다. 그렇게하면 스크립트를 편집하는동안 피드백을 빠르게 받을 수 있고, 전체 빌드가 되는 시점을 제어할 수 있습니다.
+
+> 역자 : 1번 방식은 상대적으로 오래걸리기에, 수동으로 시점을 제어하는걸 권장하는거라고 생각합니다.
+
+#### 문제 해결하기
+IDE 지원은 아래 두 모듈을 통해 제공됩니다.
+- IntelliJ/Android Studio를 통해 사용되는 kotlin plugin
+- Gradle
+
+지원되는 내용은 각 버전에 따라 다릅니다.
+
+문제가 발생했다면, 제일먼저 커맨드에서 `./gradlew tasks` 를 실행해 IDE 문제인지 Gradle 문제인지 부터 확인해 보세요. 
+커맨드에서 동일한 문제가 발생한다면 그것은 IDE문제가 아닌 빌드의 문제입니다.
+
+커맨드에선 빌드가 잘 된다면, IDE의 캐시를 지우고 다시 실행해보세요.
+
+위 시도를 해도 동작하지 않아, IDE의 문제가 있다고 생각되면 다음을 시도해 볼 수 있습니다.
+- `./gradlew tasks` 에서 더 자세한 정보 살펴보기
+- 아래 경로에 존재하는 로그를 확인해보기
+  - `$HOME/Library/Logs/gradle-kotlin-dsl` (맥 OS X 기준)
+  - `$HOME/.gradle-kotlin-dsl/logs` (리눅스 기준)
+  - `$HOME/Application Data/gradle-kotlin-dsl/log` (윈도우 기준)
+- [Kotlin Issue Tracker](https://github.com/gradle/kotlin-dsl/issues/)에 이슈남기기
+
+IDE 문제일 경우 해당 이슈 트래커에 문의해주세요
+- [JetBrain IDEA](https://docs.gradle.org/5.0/userguide/kotlin_dsl.html)
+- [Google Android Studio](https://docs.gradle.org/5.0/userguide/kotlin_dsl.html)
+
+### 코틀린 DSL 스크립트
+Groovy 기반의 환경에서 처럼, Kotlin DSL도 Gradle의 Java API를 통해 구현됩니다.
+Kotlin DSL의 모든 코틀린 코드들은 Gradle을 통해 컴파일되고 실행됩니다.
+객체, 함수, 속성들은 Gradle API 와 추가된 플러그인들을 통해 사용됩니다.
+
+#### 스크립트 파일 네이밍
