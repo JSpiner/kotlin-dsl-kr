@@ -97,3 +97,15 @@ Groovy DSL 스크립트와 Kotlin DSL 스크립트를 섞어서 사용할 수 �
 IDE의 원활한 지원을 위해 아래 규칙을 따르는걸 권장합니다.
 - 설정 스크립트(혹은 `Settings` 객체와 관련된 스크립트)는 `*.settings.gradle.kts` 패턴으로 하세요. 
 - 초기화(initialization) 스크립트는 `*.init.gradle.kts` 혹은 `init.gradle.kts` 패턴으로 하세요.
+
+이는 스크립트가 어떤 타입인지 IDE가 알게 하기 위함입니다.
+
+#### 내장(implicit) import
+모든 Kotlin DSL 스크립트는 다음과 같은 내장 import 문이 있습니다.
+
+- [Gradle 기본 API](https://docs.gradle.org/5.0/userguide/writing_build_scripts.html#script-default-imports)
+- `org.gradle.kotlin.dsl` 와 `org.gradle.kotlin.dsl.plugins.dsl` 패키지의 kotlin DSL api
+
+> Note 
+> #### 내부 Kotlin DSL Api를 사용하는걸 지양하세요
+> 내부 Kotlin DSL Api를 사용 
