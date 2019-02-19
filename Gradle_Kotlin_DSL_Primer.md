@@ -2,8 +2,8 @@
 
 # Gradle 코틀린 DSL 입문서
 ### 목차
-- 전제조건
-- IDE 지원사항
+- [전제조건](#전제조건)
+- [IDE 지원사항](#IDE-지원사항)
 - 코틀린 DSL 스크립트
 - Type-safe한 모델 접근자
 - Multi-Project에서 빌드하기
