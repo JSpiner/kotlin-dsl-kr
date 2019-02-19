@@ -88,3 +88,12 @@ Kotlin DSL의 모든 코틀린 코드들은 Gradle을 통해 컴파일되고 실
 객체, 함수, 속성들은 Gradle API 와 추가된 플러그인들을 통해 사용됩니다.
 
 #### 스크립트 파일 네이밍
+- Groovy DSL은 `.gradle` 확장자를 사용합니다.
+- Kotlin DSL은 `.gradle.kts` 확장자를 사용합니다.
+
+Kotlin DSL을 활성화하려면, `.gradle` 확장자를 `.gradle.kts` 로 바꾸세요. 그리고 설정 및 초기화 파일에도 적용하면 됩니다.
+Groovy DSL 스크립트와 Kotlin DSL 스크립트를 섞어서 사용할 수 있다는걸 기억하세요.
+
+IDE의 원활한 지원을 위해 아래 규칙을 따르는걸 권장합니다.
+- 설정 스크립트(혹은 `Settings` 객체와 관련된 스크립트)는 `*.settings.gradle.kts` 패턴으로 하세요. 
+- 초기화(initialization) 스크립트는 `*.init.gradle.kts` 혹은 `init.gradle.kts` 패턴으로 하세요.
