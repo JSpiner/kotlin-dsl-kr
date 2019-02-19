@@ -5,7 +5,7 @@
 - [전제조건](#전제조건)
 - [IDE 지원사항](#IDE-지원사항)
 - [코틀린 DSL 스크립트](#코틀린-DSL-스크립트)
-- Type-safe한 모델 접근자
+- [Type-safe한 모델 접근자](Type-safe한-모델-접근자)
 - Multi-Project에서 빌드하기
 - `plugins {}` 를 사용할수 없을때
 - container 객체와 사용하기
@@ -106,6 +106,14 @@ IDE의 원활한 지원을 위해 아래 규칙을 따르는걸 권장합니다.
 - [Gradle 기본 API](https://docs.gradle.org/5.0/userguide/writing_build_scripts.html#script-default-imports)
 - `org.gradle.kotlin.dsl` 와 `org.gradle.kotlin.dsl.plugins.dsl` 패키지의 kotlin DSL api
 
-> Note 
-> #### 내부 Kotlin DSL Api를 사용하는걸 지양하세요
-> 내부 Kotlin DSL Api를 사용 
+> Note **내부 Kotlin DSL Api를 사용하는걸 지양하세요**
+> 내부 Kotlin DSL Api를 사용하면 Gradle이나 plugin이 변경될때 빌드가 깨질 가능성이 있습니다.
+> 역자 : 내부 함수에 대해선 상위/하위호환을 고려하지 않고있어 그런것 같습니다.
+
+### Type-safe한 모델 접근자
+Groovy DSL에선 런타임에 정의된 요소또한 참조할 수 있었습니다. 이름설정이나 `SourceSe`, `implementation`등을 그렇게 사용해왔었습니다.
+
+Kotlin DSL은 이런 동적인 요소들을 플러그인을 통해 type-safe한 모델로 변경합니다.
+
+#### 어떻게 Type-safe할까?
+
