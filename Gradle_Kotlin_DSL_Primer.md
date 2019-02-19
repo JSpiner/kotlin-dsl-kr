@@ -116,4 +116,9 @@ Groovy DSL에선 런타임에 정의된 요소또한 참조할 수 있었습니�
 Kotlin DSL은 이런 동적인 요소들을 플러그인을 통해 type-safe한 모델로 변경합니다.
 
 #### 어떻게 Type-safe할까?
+Kotlin DSL은 아래 항목들을 플러그인을 통해 type-safe한 접근자를 사용하도록 지원합니다.
 
+- 의존성과 사용자 지정 설정(`implementation` 이나 `runtimeOnly` 같은 Java Plugin 기반 설정)
+- 프로젝트 확장기능과 문법들(`sourceSets` 등)
+- `tasks`와 `configuration` 내 요소들
+- 프로젝트 확장 container 내 요소들
