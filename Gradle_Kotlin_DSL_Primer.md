@@ -38,3 +38,11 @@ IntelliJ와 Android Studio는 완전하게 Kotlin DSL을 지원합니다. 다른
 | Apache Netbeans | :white_check_mark: | :white_check_mark: | :x: |
 | Visual Studio Code(LSP) | :white_check_mark: | :white_check_mark: | :x: |
 | Visual Studio | :white_check_mark: | :x: | :x: |
+
+* Syntax highlighting : Gradle 코틀린 DSL 코드에서 문법별 코드 색상화
+* Semantic editor : 코드 자동완성, 코드내에서 이동, 문서화, 리팩토링 등
+
+아래 한계에서 언급되듯이, Gradle 모델에서 프로젝트를 가져와야 위 도구들이 지원됩니다.
+
+추가적으로, IntelliJ 와 Android Studio는 편집을 할때 최대 3개의 Gradle 데몬이 동작될 수 있습니다. (빌드, 설정파일, 초기화 스크립트)
+설정이 느리게 되어있다면 IDE 반응성에 영향을 줄 수 있습니다. 그럴경우 [성능향상가이드](https://guides.gradle.org/performance/#configuration) 를  확인해주세요.  
