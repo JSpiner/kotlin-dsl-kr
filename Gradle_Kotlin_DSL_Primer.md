@@ -126,4 +126,46 @@ Kotlin DSL은 아래 항목들을 플러그인을 통해 type-safe한 접근자�
 
 > Note : 메인 빌드 스크립트만 Type-safe 접근자를 가집니다. 초기화(Initialization), 설정, 플러그인 스크립트는 지원되지 않습니다. 이 한계는 나중에 수정 될 예정입니다.
 
-Type-safe 모델 접근자의 사용가능여부는 
+Type-safe 모델 접근자의 사용가능여부는 스크립트 본문이 실행되기 직전 `plugin {}` 다음에 계산됩니다.
+그렇기 때문에 스크립트 본문이 실행된 이후에 제공된 모델들에 대해선 Type-safe 접근자가 동작하지 않습니다.
+예를 들어, 빌드스크립트에 선언한 설정들이 그렇습니다. 하지만 이 방식은 Parent 프로젝트에 적용된 플러그인에서 제공되는 모델들에 대해 Type-safe 하다는걸 의미합니다.
+아래 프로젝트는 type-safe 접근자를 사용해 설정, 확장, 객체를 어떻게 접근하는지를 다룹니다.
+
+예제1. Type-safe 접근자 사용하기
+```kotlin
+// build.gradle.kts
+
+plugins {
+    `java-library`
+}
+
+dependencies {                              (1)
+    api("junit:junit:4.12")
+    implementation("junit:junit:4.12")
+    testImplementation("junit:junit:4.12")
+}
+
+configurations {                            (1)
+    implementation {
+        resolutionStrategy.failOnVersionConflict()
+    }
+}
+
+sourceSets {                                (2)
+    main {                                  (3)
+        java.srcDir("src/core/java")
+    }
+}
+
+java {                                      (4)
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+tasks {
+    test {                                  (5)
+        testLogging.showExceptions = true
+    }
+}
+
+```
