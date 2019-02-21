@@ -169,3 +169,11 @@ tasks {
 }
 
 ```
+
+1. `Java Library Plugin` 으로부터 `api`, `implementation`, `testImplementation` 등 함수를 접근 할 수 있습니다.
+2. 프로젝트 확장(extension) 함수를 통해 `sourceSets` 함수를 접근 할 수 있습니다.
+3. `main` 함수를 접근 할 수 있습니다.
+4. `main` sourceSets의 확장으로 `java` 함수를 접근 할 수 있습니다. 
+5. `test` 함수를 접근 할 수 있습니다.
+
+> Note : 
