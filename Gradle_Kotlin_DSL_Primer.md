@@ -122,3 +122,8 @@ Kotlin DSL은 아래 항목들을 플러그인을 통해 type-safe한 접근자�
 - 프로젝트 확장기능과 문법들(`sourceSets` 등)
 - `tasks`와 `configuration` 내 요소들
 - 프로젝트 확장 container 내 요소들
+- 위에 나와있는 각각의 확장요소들
+
+> Note : 메인 빌드 스크립트만 Type-safe 접근자를 가집니다. 초기화(Initialization), 설정, 플러그인 스크립트는 지원되지 않습니다. 이 한계는 나중에 수정 될 예정입니다.
+
+Type-safe 모델 접근자의 사용가능여부는 
